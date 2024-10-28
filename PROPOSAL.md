@@ -16,6 +16,13 @@
 **Results View**
 ![alt text](<Connect 4 wire frame results view.jpg>)
 
+## Psuedocodes:     
+- Creating a 2D array to represent the game board
+- Implementing functions to handle player moves and turn switching
+- Developing a function to check for winning conditions
+- Using DOM manipulation to update the visual representation of the game board
+- Adding event listeners to handle user interactions
+
 ## User Stories
 - **AAU,** I want to be able to place my piece in a column so that I can make my move.
 - **AAU,** I want the game to automatically switch turns after each move so that I can play against an opponent.
