@@ -45,22 +45,18 @@ Notionboard template for building projects ( You can use this for any project )
 https://www.notion.so/GA-Unit-3-Tunr-Lab-da2c82fafd4e4a7aa654676732db9ee3
 
 #### Timeline - Daily Accountability
-Example of a Timeline to keep organized and on task for hitting goals every single day you’re on the sprint for your project.
 
-Create your own table using this markdown table generator website:
-https://www.tablesgenerator.com/markdown_tables
-
-Do not neglect to plan, you will thank yourself later for being proactive!
+Timeline:
 | Day        |   | Task                               | Blockers | Notes/ Thoughts |
 |------------|---|------------------------------------|----------|-----------------|
 | Monday     |   | Create and present proposal        |          |                 |
 | Tuesday    |   | Create html, js, css files         |          |                 |
 | Wednesday  |   | Create basic scaffolding           |          |                 |
-| Thursday   |   | Add functionality                  |          |                 |
-| Friday     |   | Add styling                        |          |                 |
-| Saturday   |   | Finaliza MVP                       |          |                 |
-| Sunday     |   | Work on stretch goals              |          |                 |
-| Monday     |   | Work on icebox items if applicable |          |                 |
-| Tuesday    |   |                                    |          |                 |
-| Wednesday  |   |                                    |          |                 |
+| Thursday   |   | work on hmtl files                 |          |                 |
+| Friday     |   | work on adding style in css        |          |                 |
+| Saturday   |   | work on adding style in css        |          |                 |
+| Sunday     |   | work on functionality in js        |          |                 |
+| Monday     |   | work on functionality in js        |          |                 |
+| Tuesday    |   | incorporating mvp                  |          |                 |
+| Wednesday  |   | debugging and testing program      |          |                 |
 | Thursday   |   |         Presentation Day!          |          |                 |
