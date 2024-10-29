@@ -19,6 +19,7 @@
 ## Psuedocodes:     
 - Creating a 2D array to represent the game board
 - Implementing functions to handle player moves and turn switching
+- Implement a function to detect horizontal, vertical, and diagonal winning conditions.
 - Developing a function to check for winning conditions
 - Using DOM manipulation to update the visual representation of the game board
 - Adding event listeners to handle user interactions
@@ -46,11 +47,6 @@
 - AAU, I would like to play this game to have a game music track.
 - AAU, I would like to see the ability to pick other colors for your chips other than the generic red and black.
 
-
-#### Notionboard Template
-Notionboard template for building projects ( You can use this for any project )
-https://www.notion.so/GA-Unit-3-Tunr-Lab-da2c82fafd4e4a7aa654676732db9ee3
-
 #### Timeline - Daily Accountability
 
 Timeline:
@@ -59,7 +55,7 @@ Timeline:
 | Monday     |   | Create and present proposal        |          |                 |
 | Tuesday    |   | Create html, js, css files         |          |                 |
 | Wednesday  |   | Create basic scaffolding           |          |                 |
-| Thursday   |   | work on hmtl files                 |          |                 |
+| Thursday   |   | work on html files                 |          |                 |
 | Friday     |   | work on adding style in css        |          |                 |
 | Saturday   |   | work on adding style in css        |          |                 |
 | Sunday     |   | work on functionality in js        |          |                 |
