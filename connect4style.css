@@ -5,7 +5,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: #d4d6d7fc;
 }
 .board {
   display: grid;
@@ -14,23 +14,36 @@ body {
   grid-gap: 5px;
   background-color: rgb(29, 41, 110);
   padding: 10px;
+  border-radius: 10px;
 }
 .grid {
   display: grid;
   gap: 5px; /* Space between each cell */
   padding: 10px;
-  background-color: #0074cc; /* Background color for the board */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
+  background-color: #76a8ce; /* Background color for the board */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* adds some slight 3D effect to the cells */
+  border-radius: 50%; /* Make each cell circular */
+  }
 h1 {
   text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: x-large;
 }
 h2 {
   text-align: justify;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: large;
 }
 button {
   display: flexbox;
+  align-items:center;
+  border-radius: 50px;
+  gap: 15px; 
+  margin-top: 20px;
+  size: 500px;
+  size-adjust: 60px;
+  background-color: #eeeeeefc;
+  border-color: #2480c6;
+  padding: 10px;
 }
+
