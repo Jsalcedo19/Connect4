@@ -43,20 +43,60 @@ let gameboard = [
 ["", "", "", "", "", "", ""],
 ["", "", "", "", "", "", ""]
 ];
-let playerRed = "plyR";
+let playerRed = "Red";
+let playerBlack = "Black";
+let turn = "Black";
+let winner = false;
+let tie = false;
 
-let playerBlack = "plyB";
-
-let turn = "B";
 /*---------------------------- Variables (state) ----------------------------*/
 
 //ternary operator for switching player's turn
-turn = turn === "plyB" ? "plyR" : "plyB";
+//turn = turn === "plyB" ? "plyR" : "plyB";
 
 /*------------------------ Cached Element References ------------------------*/
-const 
+const messageEl = document.querySelector("#message");
+console.log("Message Element:", messageEl);
 
 
+
+
+/*-------------------------------- functions --------------------------------*/
+//function that checks through the Board for the winner.
+function checkWin (board, player) {
+    const rows = board.length;
+    const columns = board[0].length;
+
+}
+
+function init() {
+    gameboard = [
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", ""]
+        ];
+    turn = "Black";
+    winner = false;
+    tie = false;
+    console.log("Game initialized");
+}
+
+function renderBoard(){
+
+
+
+}
+
+function playerMove(){
+
+
+
+}
+
+/*-------------------------------- eventListeners --------------------------------*/
 
 
 
