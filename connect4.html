@@ -9,9 +9,17 @@
   </head>
   <body>
     <h1>Connect 4</h1>
-    <h2 id="message">message</h2>
+    <!-- Current player's turn display -->
+    <h2 id="message">Current Player: Black</h2> 
 
-    <section class="board">
+    <!-- Player Names -->
+    <div class="player-info">
+      <p>Player 1: <span id="Player">⚫</span></p>
+      <p>Player 2: <span id="Player">🔴</span></p>
+    </div>
+
+    <!------- Gameboard ------->
+      <section class="gameboard">
       <div class="grid" id="1"></div>
       <div class="grid" id="2"></div>
       <div class="grid" id="3"></div>
@@ -60,6 +68,7 @@
       <div class="grid" id="41"></div>
       <div class="grid" id="42"></div>
     </section>
-    <button id="reset">Reset</button>
+    <!--------- reset button ---------->
+    <button id="resetBtn">Reset Game</button>
   </body>
 </html>

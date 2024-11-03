@@ -1,5 +1,4 @@
-/* 
-User stories for **Connect4Game:**
+/* User stories for **Connect4Game:**
 
 - **As a user,** I want to be able to place my piece in a column so that I can make my move.
 - **As a user,** I want the game to automatically switch turns after each move so that I can play against an opponent.
@@ -12,7 +11,7 @@ Psuedocodes:
 
 - Creating a 2D array to represent the game board
 
-- Implementing functions to handle player moves and turn switching
+- Implementing functions to handle player moves and player switching
 
 - Developing a function to check for winning conditions
 
@@ -27,87 +26,167 @@ MVP:
 - Simple UI for placing pieces in columns
 - Win detection for horizontal, vertical, and diagonal connections
 - Game over state (win/draw) display
-- Option to start a new game after completion
+- Option to reset to a new game after completion
 
 */
 
 /*-------------------------------- Constants --------------------------------*/
-
-
-// defining the gameboard 6x7
+//delcares the gameboard
 let gameboard = [
-["", "", "", "", "", "", ""],
-["", "", "", "", "", "", ""],
-["", "", "", "", "", "", ""],
-["", "", "", "", "", "", ""],
-["", "", "", "", "", "", ""],
-["", "", "", "", "", "", ""]
+  ["", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", ""],
+  ["", "", "", "", "", "", ""],
 ];
-let playerRed = "Red";
-let playerBlack = "Black";
-let turn = "Black";
+let player2 = "Red";
+let player1 = "Black";
+let currentPlayer = "Black";
 let winner = false;
 let tie = false;
-
-/*---------------------------- Variables (state) ----------------------------*/
-
-//ternary operator for switching player's turn
-//turn = turn === "plyB" ? "plyR" : "plyB";
+let gameActive = false;
 
 /*------------------------ Cached Element References ------------------------*/
 const messageEl = document.querySelector("#message");
-console.log("Message Element:", messageEl);
+const resetBtn = document.getElementById("resetBtn");
 
+/*-------------------------------- Functions --------------------------------*/
 
-
-
-/*-------------------------------- functions --------------------------------*/
-//function that checks through the Board for the winner.
-function checkWin (board, player) {
-    const rows = board.length;
-    const columns = board[0].length;
-
-}
-
+// Initializes the game
 function init() {
-    gameboard = [
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", ""]
-        ];
-    turn = "Black";
-    winner = false;
-    tie = false;
-    console.log("Game initialized");
+  gameboard = Array(6)
+    .fill("")
+    .map(() => Array(7).fill(""));
+  currentPlayer = "Black";
+  winner = false;
+  tie = false;
+  gameActive = true;
+  messageEl.textContent = "Current Player: Black";
+  renderBoard(); // Reset visual board
 }
 
-function renderBoard(){
-
-
-
+// Renders the board on the DOM
+//psuedo codes
+/* 
+    clears existing display 
+    loops through rows and cells
+    setting styles based on the cell state 
+*/
+function renderBoard() {
+  //loops through each rows
+  gameboard.forEach((row, rowIndex) => {
+    //here the function uses another loop to loop through each cell of each column index.
+    row.forEach((cell, colIndex) => {
+      const cellId = rowIndex * 7 + colIndex + 1; //this cellId assumes that each row has exactly 7 cells.
+      const cellElement = document.getElementById(cellId);
+      cellElement.style.backgroundColor = cell === "Black" ? "black" : cell === "Red" ? "red" : "";
+    });
+  });
 }
 
-function playerMove(){
-
-
-
+//checkFortie function checks every row and cell for a winner if no winner found then its a tie!
+function checkForTie() {
+  return gameboard.every((row) => row.every((cell) => cell !== ""));
 }
 
-/*-------------------------------- eventListeners --------------------------------*/
+// Checks if there’s a winning set
+function checkBoard(row, column) {
+  const player = gameboard[row][column];
+  if (player === "") return false;
+ /*helper function that checks every cell if there is a matching set. 
+    used chat GPT for help on helper function "directionCheck" */
+  function directionCheck(rowInc, colInc) {
+    let count = 0;
+    let r = row;
+    let c = column;
+    while (
+      r >= 0 &&
+      r < gameboard.length &&
+      c >= 0 &&
+      c < gameboard[0].length &&
+      gameboard[r][c] === player
+    ) {
+      count++;
+      r += rowInc;
+      c += colInc;
+    }
+    return count;
+  }
+// declares variables that check for each match
+  const horizontalCheck = directionCheck(0, 1) + directionCheck(0, -1) - 1;
+  const verticalCheck = directionCheck(1, 0) + directionCheck(-1, 0) - 1;
+  const diagDownRightCheck = directionCheck(1, 1) + directionCheck(-1, -1) - 1;
+  const diagUpRightCheck = directionCheck(1, -1) + directionCheck(-1, 1) - 1;
+
+  return (
+    //checks for 4 set of the same color , horizontal, vertical, diagon
+    horizontalCheck >= 4 ||
+    verticalCheck >= 4 ||
+    diagDownRightCheck >= 4 ||
+    diagUpRightCheck >= 4
+  );
+}
+
+// Switches to the other player
+function switchPlayer() {
+    currentPlayer = currentPlayer === "Black" ? "Red" : "Black";
+    messageEl.textContent = `Current Player: ${currentPlayer}`;
+  }
+
+// Handles cell clicks
+function clickCell(event) {
+  if (!gameActive) return;
+
+  const cellId = parseInt(event.target.id);
+  const column = (cellId - 1) % 7;
+  let row = null;
+
+  for (let r = gameboard.length - 1; r >= 0; r--) {
+    if (gameboard[r][column] === "") {
+      row = r;
+      break;
+    }
+  }
+//if statement check for values on the gameboard then 
+  if (row !== null) {
+    gameboard[row][column] = currentPlayer;
+    renderBoard(); //calls the render function to update the gameboard
+
+    if (checkBoard(row, column)) {
+      messageEl.textContent = `WOW!!!!!${currentPlayer} Wins!!!!!!`; //displays current player Win! message
+      gameActive = false;
+    } else if (checkForTie()) {
+      messageEl.textContent = "It's a tie!"; // displays tie message on game message
+      gameActive = false;
+    } else {
+      switchPlayer(); //calls the switch player function which switches to the current player
+    }
+  } else {
+    alert("Column is full. Try another column."); //todo: need to eliminate the 
+  }
+}
+/*-------------------------------- Event Listeners --------------------------------*/
+document.querySelectorAll(".grid").forEach((cell) => {
+  cell.addEventListener("click", clickCell);
+});
+resetBtn.addEventListener("click", init);
+init();
 
 
 
+/* todo: create a scoreboard that would tally total number of wins 
+    up to 20 matches.
+    function gamScore(){
+    if (winner === player 1);
+    return text.content = player-1 +1;
+    }
+    if (winner === player 2);
+    return text.content = player-2 +1;
+    
+    else winner !=== player 1 || player 2 
+    return tie + 1 
 
 
 
-
-
-
-
-
-
-
-
+*/

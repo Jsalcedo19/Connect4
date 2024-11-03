@@ -5,9 +5,9 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #d4d6d7fc;
+  background-color: #688c9dfc;
 }
-.board {
+.gameboard {
   display: grid;
   grid-template-columns: repeat(7, 50px);
   grid-template-rows: repeat(6, 50px);
@@ -15,35 +15,60 @@ body {
   background-color: rgb(29, 41, 110);
   padding: 10px;
   border-radius: 10px;
+  cursor: pointer;
 }
 .grid {
   display: grid;
   gap: 5px; /* Space between each cell */
   padding: 10px;
-  background-color: #76a8ce; /* Background color for the board */
+  background-color: #6c97b8; /* Background color for the board */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* adds some slight 3D effect to the cells */
   border-radius: 50%; /* Make each cell circular */
-  }
+}
 h1 {
   text-align: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: x-large;
 }
 h2 {
   text-align: justify;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: large;
 }
-button {
+  #message {
+    font-size: 24px;
+    color: #444444;
+    margin-bottom: 20px;
+}
+#player {
+  display: flex;
+  background-color: #111213;
+  
+  
+  border-radius: 50%;
+}
+#player {
+  display: flex;
+  background-color: #6e1b1b;
+  
+  
+  border-radius: 50%;
+}
+#resetBtn {
   display: flexbox;
-  align-items:center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  align-items: center;
   border-radius: 50px;
-  gap: 15px; 
+  gap: 15px;
   margin-top: 20px;
   size: 500px;
   size-adjust: 60px;
   background-color: #eeeeeefc;
   border-color: #2480c6;
   padding: 10px;
+  cursor: pointer;
 }
 

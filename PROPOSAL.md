@@ -42,7 +42,7 @@
 
 #### Stretch Goals
 
-- AAU, I would like a scoreboard to keep track on my wins and losses!
+- AAU, I would like a scoreboard to keep track on my wins and losses! (localStorage)
 - AAU, I would like to hear an audible sound when I mark a game box so that I know my selection worked.
 - AAU, I would like to play this game to have a game music track.
 - AAU, I would like to see the ability to pick other colors for your chips other than the generic red and black.
