@@ -163,7 +163,9 @@ function clickCell(event) {
       switchPlayer(); //calls the switch player function which switches to the current player
     }
   } else {
-    alert("Column is full. Try another column."); //todo: need to eliminate the 
+    // Displays "Column is full" message
+    const messageEl = document.getElementById("message");
+    messageEl.textContent = "Column is full. Try another column.";
   }
 }
 /*-------------------------------- Event Listeners --------------------------------*/
