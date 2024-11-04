@@ -17,11 +17,12 @@ body {
   border-radius: 10px;
   cursor: pointer;
 }
+
 .grid {
   display: grid;
   gap: 5px; /* Space between each cell */
   padding: 10px;
-  background-color: #6c97b8; /* Background color for the board */
+  background-color: #6c97b8;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* adds some slight 3D effect to the cells */
   border-radius: 50%; /* Make each cell circular */
 }

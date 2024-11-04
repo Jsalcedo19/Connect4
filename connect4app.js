@@ -46,6 +46,9 @@ let currentPlayer = "Black";
 let winner = false;
 let tie = false;
 let gameActive = false;
+let player1Score = 0;
+let player2Score = 0;
+let tieScore = 0;
 
 /*------------------------ Cached Element References ------------------------*/
 const messageEl = document.querySelector("#message");
@@ -56,14 +59,17 @@ const resetBtn = document.getElementById("resetBtn");
 // Initializes the game
 function init() {
   gameboard = Array(6)
-    .fill("")
-    .map(() => Array(7).fill(""));
+    .fill("") // fills an array of 6 rows 
+    .map(() => Array(7).fill("")); //fills an array of 7 columns
   currentPlayer = "Black";
   winner = false;
   tie = false;
   gameActive = true;
   messageEl.textContent = "Current Player: Black";
   renderBoard(); // Reset visual board
+  document.getElementById("player1Score").textContent = player1Score;
+document.getElementById("player2Score").textContent = player2Score;
+document.getElementById("tieScore").textContent = tieScore;
 }
 
 // Renders the board on the DOM
@@ -154,30 +160,24 @@ function clickCell(event) {
     renderBoard(); //calls the render function to update the gameboard
 
     if (checkBoard(row, column)) {
+
       messageEl.textContent = `WOW!!!!!${currentPlayer} Wins!!!!!!`; //displays current player Win! message
-      gameActive = false;
+      gameScore(currentPlayer)
+      //gameActive = false;
     } else if (checkForTie()) {
       messageEl.textContent = "It's a tie!"; // displays tie message on game message
-      gameActive = false;
+      gameScore("tie");
+      //gameActive = false;
     } else {
       switchPlayer(); //calls the switch player function which switches to the current player
     }
   } else {
-    // Displays "Column is full" message
+    // Displays "Column is full" message 
     const messageEl = document.getElementById("message");
     messageEl.textContent = "Column is full. Try another column.";
   }
 }
-/*-------------------------------- Event Listeners --------------------------------*/
-document.querySelectorAll(".grid").forEach((cell) => {
-  cell.addEventListener("click", clickCell);
-});
-resetBtn.addEventListener("click", init);
-init();
-
-
-
-/* todo: create a scoreboard that would tally total number of wins 
+/* todo: Scretch goal create a scoreboard that would tally total number of wins 
     up to 20 matches.
     function gamScore(){
     if (winner === player 1);
@@ -188,7 +188,31 @@ init();
     
     else winner !=== player 1 || player 2 
     return tie + 1 
-
-
-
 */
+function gameScore(){
+if (winner === "player1") {
+  player1Score += 1; 
+} else if (winner === "player2") {
+  player2Score += 1;
+} else if (winner === "tie") {
+tieScore += 1;
+}
+document.getElementById("player1Score").textContent = player1Score;
+document.getElementById("player2Score").textContent = player2Score;
+document.getElementById("tieScore").textContent = tieScore;
+
+ // End the game if either player reaches 10 wins
+ if (player1Score >= 10 || player2Score >= 10) {
+    messageEl.textContent = (`${winner} has reached 10 wins! Game Over!!!`);
+  gameActive = false;
+  gameScore(); //updates score after win
+}
+}
+/*-------------------------------- Event Listeners --------------------------------*/
+document.querySelectorAll(".grid").forEach((cell) => {
+  cell.addEventListener("click", clickCell);
+});
+resetBtn.addEventListener("click", init);
+
+init();
+
