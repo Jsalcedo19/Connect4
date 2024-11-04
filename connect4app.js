@@ -45,11 +45,11 @@ let player1 = "Black";
 let currentPlayer = "Black";
 let winner = false;
 let tie = false;
-let gameActive = false;
-let player1Score = 0;
-let player2Score = 0;
-let tieScore = 0;
-
+let gameActive = true;
+//let player1Score = document.getElementById("Player1-Score");
+//let player2Score = document.getElementById("Player2-Score");
+//let tieScore = document.getElementById("tieScore");
+//console.log(player1Score)
 /*------------------------ Cached Element References ------------------------*/
 const messageEl = document.querySelector("#message");
 const resetBtn = document.getElementById("resetBtn");
@@ -67,9 +67,9 @@ function init() {
   gameActive = true;
   messageEl.textContent = "Current Player: Black";
   renderBoard(); // Reset visual board
-  document.getElementById("player1Score").textContent = player1Score;
-document.getElementById("player2Score").textContent = player2Score;
-document.getElementById("tieScore").textContent = tieScore;
+ // player1Score.textContent = 0;
+ // player2Score.textContent = 0;
+ // tieScore.textContent = 0;
 }
 
 // Renders the board on the DOM
@@ -161,13 +161,15 @@ function clickCell(event) {
 
     if (checkBoard(row, column)) {
 
-      messageEl.textContent = `WOW!!!!!${currentPlayer} Wins!!!!!!`; //displays current player Win! message
-      gameScore(currentPlayer)
-      //gameActive = false;
+      messageEl.textContent = `WOW!!!!!${currentPlayer} Wins!!!!!!`; 
+      currentPlayer.textContent = currentPlayer.textContent + 1;
+      //displays current player Win! message
+      gameActive = false;
+      
     } else if (checkForTie()) {
       messageEl.textContent = "It's a tie!"; // displays tie message on game message
-      gameScore("tie");
-      //gameActive = false;
+      tieScore.textContent = tieScore.textContent + 1;
+      gameActive = false;
     } else {
       switchPlayer(); //calls the switch player function which switches to the current player
     }
@@ -189,7 +191,7 @@ function clickCell(event) {
     else winner !=== player 1 || player 2 
     return tie + 1 
 */
-function gameScore(){
+/*function gameScore(){
 if (winner === "player1") {
   player1Score += 1; 
 } else if (winner === "player2") {
@@ -205,7 +207,6 @@ document.getElementById("tieScore").textContent = tieScore;
  if (player1Score >= 10 || player2Score >= 10) {
     messageEl.textContent = (`${winner} has reached 10 wins! Game Over!!!`);
   gameActive = false;
-  gameScore(); //updates score after win
 }
 }
 /*-------------------------------- Event Listeners --------------------------------*/
