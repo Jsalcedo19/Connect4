@@ -17,15 +17,27 @@ body {
   border-radius: 10px;
   cursor: pointer;
 }
+.scoreboard {
+  display: flex;
+  justify-content: space-around; /* Evenly space each item */
+  align-items: center; /* Center items vertically */
+  gap: 20px; /* Optional: add space between items */
+  margin-bottom: 20px; /* Space below the scoreboard */
+}
 
 .grid {
-  display: grid;
-  gap: 5px; /* Space between each cell */
+  gap: 5px;
   padding: 10px;
   background-color: #6c97b8;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* adds some slight 3D effect to the cells */
-  border-radius: 50%; /* Make each cell circular */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 50%; /* Make each cell circular*/
 }
+  /*display: grid;
+  gap: 5px; /* Space between each cell */
+  /*padding: 10px;
+  background-color: #6c97b8;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* adds some slight 3D effect to the cells */
+  /*border-radius: 50%; /* Make each cell circular */
 h1 {
   text-align: center;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -43,19 +55,10 @@ h2 {
     color: #444444;
     margin-bottom: 20px;
 }
-#player {
-  display: flex;
-  background-color: #111213;
-  
-  
-  border-radius: 50%;
-}
-#player {
-  display: flex;
-  background-color: #6e1b1b;
-  
-  
-  border-radius: 50%;
+.player-info {display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
 }
 #resetBtn {
   display: flexbox;
@@ -65,11 +68,10 @@ h2 {
   border-radius: 50px;
   gap: 15px;
   margin-top: 20px;
-  size: 500px;
-  size-adjust: 60px;
+  width: 150px;
+  height: 50px;
   background-color: #eeeeeefc;
   border-color: #2480c6;
   padding: 10px;
   cursor: pointer;
 }
-

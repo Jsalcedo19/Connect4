@@ -45,10 +45,10 @@ let player1 = "Black";
 let currentPlayer = "Black";
 let winner = false;
 let tie = false;
-let gameActive = true;
-//let player1Score = document.getElementById("Player1-Score");
-//let player2Score = document.getElementById("Player2-Score");
-//let tieScore = document.getElementById("tieScore");
+let gameActive = false;
+let player1Score = document.getElementById("Player1-Score");
+let player2Score = document.getElementById("Player2-Score");
+let tieScore = document.getElementById("tieScore");
 //console.log(player1Score)
 /*------------------------ Cached Element References ------------------------*/
 const messageEl = document.querySelector("#message");
@@ -84,7 +84,8 @@ function renderBoard() {
   gameboard.forEach((row, rowIndex) => {
     //here the function uses another loop to loop through each cell of each column index.
     row.forEach((cell, colIndex) => {
-      const cellId = rowIndex * 7 + colIndex + 1; //this cellId assumes that each row has exactly 7 cells.
+      const cellId = rowIndex * 7 + colIndex + 1; 
+      //this cellId assumes that each row has exactly 7 cells.
       const cellElement = document.getElementById(cellId);
       cellElement.style.backgroundColor = cell === "Black" ? "black" : cell === "Red" ? "red" : "";
     });
@@ -139,9 +140,41 @@ function switchPlayer() {
     currentPlayer = currentPlayer === "Black" ? "Red" : "Black";
     messageEl.textContent = `Current Player: ${currentPlayer}`;
   }
-
+  function clickCell(event) {
+    if (!gameActive) return;
+  
+    const cellId = parseInt(event.target.id);
+    const column = (cellId - 1) % 7;
+    let row = null;
+  
+    for (let r = gameboard.length - 1; r >= 0; r--) {
+      if (gameboard[r][column] === "") {
+        row = r;
+        break;
+      }
+    }
+  
+    if (row !== null) {
+      gameboard[row][column] = currentPlayer;
+      renderBoard();
+  
+      if (checkBoard(row, column)) {
+        messageEl.textContent = `WOW!!!!! ${currentPlayer} Wins!!!!!!`;
+        gameScore(currentPlayer); // Update score for winner
+        gameActive = false;
+      } else if (checkForTie()) {
+        messageEl.textContent = "It's a tie!";
+        gameScore("tie"); // Update the tie score in case of a tie
+        gameActive = false;
+      } else {
+        switchPlayer();
+      }
+    } else {
+      messageEl.textContent = "Column is full. Try another column.";
+    }
+  }
 // Handles cell clicks
-function clickCell(event) {
+/*function clickCell(event) {
   if (!gameActive) return;
 
   const cellId = parseInt(event.target.id);
@@ -162,7 +195,7 @@ function clickCell(event) {
     if (checkBoard(row, column)) {
 
       messageEl.textContent = `WOW!!!!!${currentPlayer} Wins!!!!!!`; 
-      currentPlayer.textContent = currentPlayer.textContent + 1;
+      gameScore(currentPlayer)
       //displays current player Win! message
       gameActive = false;
       
@@ -178,10 +211,11 @@ function clickCell(event) {
     const messageEl = document.getElementById("message");
     messageEl.textContent = "Column is full. Try another column.";
   }
-}
+} 
+*/
 /* todo: Scretch goal create a scoreboard that would tally total number of wins 
     up to 20 matches.
-    function gamScore(){
+    function gameScore(){
     if (winner === player 1);
     return text.content = player-1 +1;
     }
@@ -191,24 +225,24 @@ function clickCell(event) {
     else winner !=== player 1 || player 2 
     return tie + 1 
 */
-/*function gameScore(){
-if (winner === "player1") {
+function gameScore(){
+if (winner === "Black") {
   player1Score += 1; 
-} else if (winner === "player2") {
+  document.getElementById("player1-Score").textContent = player1Score;
+} else if (winner === "player2-Score") {
   player2Score += 1;
+  document.getElementById("player2-Score").textContent = player2Score;
 } else if (winner === "tie") {
 tieScore += 1;
-}
-document.getElementById("player1Score").textContent = player1Score;
-document.getElementById("player2Score").textContent = player2Score;
 document.getElementById("tieScore").textContent = tieScore;
+}
 
  // End the game if either player reaches 10 wins
- if (player1Score >= 10 || player2Score >= 10) {
+ /*if (player1Score >= 10 || player2Score >= 10) {
     messageEl.textContent = (`${winner} has reached 10 wins! Game Over!!!`);
-  gameActive = false;
+  gameActive = false; */
 }
-}
+
 /*-------------------------------- Event Listeners --------------------------------*/
 document.querySelectorAll(".grid").forEach((cell) => {
   cell.addEventListener("click", clickCell);
