@@ -46,9 +46,7 @@ let currentPlayer = "Black";
 let winner = false;
 let tie = false;
 let gameActive = false;
-let player1Score = document.getElementById("Player1-Score");
-let player2Score = document.getElementById("Player2-Score");
-let tieScore = document.getElementById("tieScore");
+
 //console.log(player1Score)
 /*------------------------ Cached Element References ------------------------*/
 const messageEl = document.querySelector("#message");
@@ -59,40 +57,32 @@ const resetBtn = document.getElementById("resetBtn");
 // Initializes the game
 function init() {
   gameboard = Array(6)
-    .fill("") // fills an array of 6 rows 
-    .map(() => Array(7).fill("")); //fills an array of 7 columns
+    .fill("")
+    .map(() => Array(7).fill("")); // resets the board
   currentPlayer = "Black";
   winner = false;
   tie = false;
   gameActive = true;
   messageEl.textContent = "Current Player: Black";
   renderBoard(); // Reset visual board
- // player1Score.textContent = 0;
- // player2Score.textContent = 0;
- // tieScore.textContent = 0;
 }
 
 // Renders the board on the DOM
-//psuedo codes
-/* 
-    clears existing display 
-    loops through rows and cells
-    setting styles based on the cell state 
-*/
 function renderBoard() {
   //loops through each rows
   gameboard.forEach((row, rowIndex) => {
     //here the function uses another loop to loop through each cell of each column index.
     row.forEach((cell, colIndex) => {
-      const cellId = rowIndex * 7 + colIndex + 1; 
+      const cellId = rowIndex * 7 + colIndex + 1;
       //this cellId assumes that each row has exactly 7 cells.
       const cellElement = document.getElementById(cellId);
-      cellElement.style.backgroundColor = cell === "Black" ? "black" : cell === "Red" ? "red" : "";
+      cellElement.style.backgroundColor =
+        cell === "Black" ? "black" : cell === "Red" ? "red" : "";
     });
   });
 }
 
-//checkFortie function checks every row and cell for a winner if no winner found then its a tie!
+//checkFortie function checks every row and cell for a tie
 function checkForTie() {
   return gameboard.every((row) => row.every((cell) => cell !== ""));
 }
@@ -101,7 +91,7 @@ function checkForTie() {
 function checkBoard(row, column) {
   const player = gameboard[row][column];
   if (player === "") return false;
- /*helper function that checks every cell if there is a matching set. 
+    /*helper function that checks every cell if there is a matching set. 
     used chat GPT for help on helper function "directionCheck" */
   function directionCheck(rowInc, colInc) {
     let count = 0;
@@ -120,7 +110,7 @@ function checkBoard(row, column) {
     }
     return count;
   }
-// declares variables that check for each match
+  // declares variables that check for each match
   const horizontalCheck = directionCheck(0, 1) + directionCheck(0, -1) - 1;
   const verticalCheck = directionCheck(1, 0) + directionCheck(-1, 0) - 1;
   const diagDownRightCheck = directionCheck(1, 1) + directionCheck(-1, -1) - 1;
@@ -137,44 +127,12 @@ function checkBoard(row, column) {
 
 // Switches to the other player
 function switchPlayer() {
-    currentPlayer = currentPlayer === "Black" ? "Red" : "Black";
-    messageEl.textContent = `Current Player: ${currentPlayer}`;
-  }
-  function clickCell(event) {
-    if (!gameActive) return;
-  
-    const cellId = parseInt(event.target.id);
-    const column = (cellId - 1) % 7;
-    let row = null;
-  
-    for (let r = gameboard.length - 1; r >= 0; r--) {
-      if (gameboard[r][column] === "") {
-        row = r;
-        break;
-      }
-    }
-  
-    if (row !== null) {
-      gameboard[row][column] = currentPlayer;
-      renderBoard();
-  
-      if (checkBoard(row, column)) {
-        messageEl.textContent = `WOW!!!!! ${currentPlayer} Wins!!!!!!`;
-        gameScore(currentPlayer); // Update score for winner
-        gameActive = false;
-      } else if (checkForTie()) {
-        messageEl.textContent = "It's a tie!";
-        gameScore("tie"); // Update the tie score in case of a tie
-        gameActive = false;
-      } else {
-        switchPlayer();
-      }
-    } else {
-      messageEl.textContent = "Column is full. Try another column.";
-    }
-  }
+  currentPlayer = currentPlayer === "Black" ? "Red" : "Black";
+  messageEl.textContent = `Current Player: ${currentPlayer}`;
+}
+
 // Handles cell clicks
-/*function clickCell(event) {
+function clickCell(event) {
   if (!gameActive) return;
 
   const cellId = parseInt(event.target.id);
@@ -187,60 +145,25 @@ function switchPlayer() {
       break;
     }
   }
-//if statement check for values on the gameboard then 
+
   if (row !== null) {
     gameboard[row][column] = currentPlayer;
     renderBoard(); //calls the render function to update the gameboard
 
     if (checkBoard(row, column)) {
-
-      messageEl.textContent = `WOW!!!!!${currentPlayer} Wins!!!!!!`; 
-      gameScore(currentPlayer)
+      messageEl.textContent = `WOW!!!!!${currentPlayer} Wins!!!!!!`;
       //displays current player Win! message
       gameActive = false;
-      
     } else if (checkForTie()) {
       messageEl.textContent = "It's a tie!"; // displays tie message on game message
-      tieScore.textContent = tieScore.textContent + 1;
       gameActive = false;
     } else {
       switchPlayer(); //calls the switch player function which switches to the current player
     }
   } else {
-    // Displays "Column is full" message 
-    const messageEl = document.getElementById("message");
+    // Displays "Column is full" message
     messageEl.textContent = "Column is full. Try another column.";
   }
-} 
-*/
-/* todo: Scretch goal create a scoreboard that would tally total number of wins 
-    up to 20 matches.
-    function gameScore(){
-    if (winner === player 1);
-    return text.content = player-1 +1;
-    }
-    if (winner === player 2);
-    return text.content = player-2 +1;
-    
-    else winner !=== player 1 || player 2 
-    return tie + 1 
-*/
-function gameScore(){
-if (winner === "Black") {
-  player1Score += 1; 
-  document.getElementById("player1-Score").textContent = player1Score;
-} else if (winner === "player2-Score") {
-  player2Score += 1;
-  document.getElementById("player2-Score").textContent = player2Score;
-} else if (winner === "tie") {
-tieScore += 1;
-document.getElementById("tieScore").textContent = tieScore;
-}
-
- // End the game if either player reaches 10 wins
- /*if (player1Score >= 10 || player2Score >= 10) {
-    messageEl.textContent = (`${winner} has reached 10 wins! Game Over!!!`);
-  gameActive = false; */
 }
 
 /*-------------------------------- Event Listeners --------------------------------*/
@@ -250,4 +173,3 @@ document.querySelectorAll(".grid").forEach((cell) => {
 resetBtn.addEventListener("click", init);
 
 init();
-
