@@ -2,6 +2,17 @@
 Game Description: 
 Connect 4, is a classic two-player strategy board game, recreated for a digital platform. This project will use JavaScript, HTML, and CSS to build a web-based version, allowing players to enjoy the timeless gameplay in a modern, user-friendly interface. The objective is to create a responsive and interactive game that mimics the traditional Connect 4 experience, where players alternate turns to drop colored discs into a vertical grid, aiming to connect four discs in a row - horizontally, vertically, or diagonally. First to achieve this task wins the game.
 
+### Visualization of Connect4: 
+
+![alt text](image-1.png)
+start of game.
+
+![alt text](image-3.png)
+players turn
+
+![alt text](image-2.png)
+Player wins
+
 Game Instructions: 
 - Two Players based strategy game
 - Player one takes red chip and places inside the 6x7 grid.
