@@ -56,10 +56,10 @@ Timeline:
 | Tuesday    |   | Create html, js, css files         |          |                 |
 | Wednesday  |   | Create basic scaffolding           |          |                 |
 | Thursday   |   | work on html files                 |          |                 |
-| Friday     |   | work on adding style in css        |          |                 |
+| Friday     |   | work on MVPs                       |          |                 |
 | Saturday   |   | work on adding style in css        |          |                 |
 | Sunday     |   | work on functionality in js        |          |                 |
 | Monday     |   | work on functionality in js        |          |                 |
-| Tuesday    |   | incorporating mvp                  |          |                 |
+| Tuesday    |   | incorporating screatch goals       |          |                 |
 | Wednesday  |   | debugging and testing program      |          |                 |
 | Thursday   |   |         Presentation Day!          |          |                 |
