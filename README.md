@@ -27,11 +27,11 @@ User stories for **Connect4Game:**
 - Game over state (win/draw) display
 - Option to start a new game after completion
 
-#Access:
+### Access:
 Deployed: https://connect4game-jose.netlify.app/
 GitHub: https://github.com/Jsalcedo19/Connect4.git
 
-#Resources:
+### Resources:
 https://www.w3schools.com/tags/att_input_type_reset.asp
 https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-prefixing-flexbox
 https://developer.mozilla.org/en-US/
