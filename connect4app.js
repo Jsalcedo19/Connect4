@@ -91,9 +91,9 @@ function checkForTie() {
 function checkBoard(row, column) {
   const player = gameboard[row][column];
   if (player === "") return false;
-    /*helper function that checks every cell if there is a matching set. 
-    used chat GPT for help on helper function "directionCheck" */
-  function directionCheck(rowInc, colInc) {
+    //helper function that checks every cell if there is a matching set. 
+    // Resourced MDN and Chat GPT.
+function directionCheck(rowInc, colInc) {
     let count = 0;
     let r = row;
     let c = column;
