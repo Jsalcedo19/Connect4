@@ -19,10 +19,10 @@ body {
 }
 .ScoreBoard {
   display: flex;
-  justify-content: space-around; /* Evenly space each item */
-  align-items: flex-end; /* Center items vertically */
+  justify-content: space-around; 
+  align-items: flex-end;
   gap: 20px; 
-  margin-bottom: 20px; /* Space below the scoreboard */
+  margin-bottom: 20px; 
 }
 
 .grid {
